@@ -10,51 +10,51 @@ set -e
 # - `user`
 # Default: `project`
 # DEPRECATED: Please use GH_PAGES_BRANCH instead which allows for more configuration.
-if [[ -n "$GH_PAGES_TYPE" ]]; then
-  echo -e "DEPRECATED: Please use the GH_PAGES_BRANCH environment variable instead of GH_PAGES_TYPE.\nThis may be removed in a future release."
-  if [[ "$GH_PAGES_TYPE" = "project" ]]; then
-    GH_PAGES_BRANCH="gh-pages"
-  elif [[ "$GH_PAGES_TYPE" = "user" ]]; then
-    GH_PAGES_BRANCH="master"
-  fi
-fi
+# if [[ -n "$GH_PAGES_TYPE" ]]; then
+  # echo -e "DEPRECATED: Please use the GH_PAGES_BRANCH environment variable instead of GH_PAGES_TYPE.\nThis may be removed in a future release."
+  # if [[ "$GH_PAGES_TYPE" = "project" ]]; then
+    # GH_PAGES_BRANCH="gh-pages"
+  # elif [[ "$GH_PAGES_TYPE" = "user" ]]; then
+    # GH_PAGES_BRANCH="master"
+  # fi
+# fi
 # Specifies the branch to deploy to
 # Default: `gh-pages`
-GH_PAGES_BRANCH=${GH_PAGES_BRANCH:-"gh-pages"}
+GH_PAGES_BRANCH=${INPUT_GH_PAGES_BRANCH:-${GH_PAGES_BRANCH:-"gh-pages"}}
 # Specifies the folder that Jekyll builds to
 # Default: `_site`
-GH_PAGES_DIST_FOLDER=${GH_PAGES_DIST_FOLDER:-"_site"}
+GH_PAGES_DIST_FOLDER=${INPUT_GH_PAGES_DIST_FOLDER:-${GH_PAGES_DIST_FOLDER:-"_site"}}
 
 if [[ -n "$GH_PAGES_MESSAGE" ]]; then
   echo "DEPRECATED: Please use the GH_PAGES_COMMIT_MESSAGE environment variable instead of GH_PAGES_MESSAGE."
   GH_PAGES_COMMIT_MESSAGE="$GH_PAGES_MESSAGE"
 fi
 # Specifies the commit message
-GH_PAGES_COMMIT_MESSAGE=${GH_PAGES_COMMIT_MESSAGE:-"Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW"}
+GH_PAGES_COMMIT_MESSAGE=${INPUT_GH_PAGES_COMMIT_MESSAGE:${GH_PAGES_COMMIT_MESSAGE:-"Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW"}}
 if [[ -z "$GH_PAGES_TOKEN" ]]; then
   echo "ERROR: Please use the GH_PAGES_TOKEN to specify the token to use for triggering a build request."
   exit 1
 fi
 # Specifies the Git remote repository
 # REMOTE_REPO=${REMOTE_REPO:-"https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}
-REMOTE_REPO=${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}
+REMOTE_REPO=${INPUT_REMOTE_REPO:${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}}
 # Specifies the committer's username
 # Default: $GITHUB_ACTOR
-COMMITTER_USERNAME=${COMMITTER_USERNAME:-$GITHUB_ACTOR}
+COMMITTER_USERNAME=${INPUT_COMMITTER_USERNAME:${COMMITTER_USERNAME:-$GITHUB_ACTOR}}
 # Specifies the committer's email
 # Default: `${GITHUB_ACTOR}@users.noreply.github.com`
-COMMITTER_EMAIL=${COMMITTER_EMAIL:-"${GITHUB_ACTOR}@users.noreply.github.com"}
+COMMITTER_EMAIL=${INPUT_COMMITTER_EMAIL:${COMMITTER_EMAIL:-"${GITHUB_ACTOR}@users.noreply.github.com"}}
 
 # Whether to force pushing
 # Default: `true`
-GIT_FORCE=${GIT_FORCE:-true}
+GIT_FORCE=${INPUT_GIT_FORCE:${GIT_FORCE:-true}}
 
 # Whether to override the contents of the branch with the current build
-OVERRIDE_GH_PAGES_BRANCH=${OVERRIDE_GH_PAGES_BRANCH:-false}
+OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:${OVERRIDE_GH_PAGES_BRANCH:-false}}
 
 # Whether to add the `.nojekyll` file to indicate that the branch should not be built
 # Default: `true`
-GH_PAGES_ADD_NO_JEKYLL=${GH_PAGES_ADD_NO_JEKYLL:-true}
+GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
 echo "Installing gem bundle..."
 # Prevent installed dependencies messages from clogging the log
