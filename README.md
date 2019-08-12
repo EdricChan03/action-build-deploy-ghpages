@@ -4,53 +4,67 @@ A GitHub Action that builds and deploys a Jekyll site to GitHub Pages.
 
 This GitHub Action requires a GitHub personal access token to deploy commits. To create one, click [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) and specify the `GH_PAGES_TOKEN` environment variable in your GitHub repository's Secrets.
 
-## Environment variables
+> Note: This branch (`v2`) contains work for the latest and most recent version of GitHub Actions, which was recently revamped to use YAML syntax. See the [announcement post](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) for more info.
 
-Name | Description | Default | Allowed values
----|---|---|---
-`GH_PAGES_BRANCH` | Specifies the branch to deploy to | `gh-pages` | Any branch name
-`GH_PAGES_DIST_FOLDER` | Specifies the folder that Jekyll builds to | `_site` | A folder name
-`GH_PAGES_COMMIT_MESSAGE` | Specifies the commit message | `Deploy commit $GITHUB_SHA\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW` | A commit message
-`REMOTE_REPO` | Specifies the Git remote repository | `https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git` | A remote repo
-`COMMITTER_USERNAME` | Specifies the committer's username | `$GITHUB_ACTOR` | A GitHub username
-`COMMITTER_EMAIL` | Specifies the committer's email | `${GITHUB_ACTOR}@users.noreply.github.com` | A valid email address
-`GIT_FORCE` | Whether to add the `--force` flag to `git push`. | `true` | A boolean (`true` or `false`), or an integer (`0` or `1`)
-`OVERRIDE_GH_PAGES_BRANCH` | Whether to override the contents of the existing branch with the contents of the build. (Should be used with `GIT_FORCE` set to `false`) | `false` | A boolean (`true` or `false`), or an integer (`0` or `1`)
-`GH_PAGES_ADD_NO_JEKYLL` | Whether to add the `.nojekyll` file to the branch to indicate that it should not be compiled with Jekyll. | `true` | A boolean (`true` or `false`), or an integer `0` or `1`)
+## Usage
 
-### Other
+See [`action.yml`](./action.yml) for a list of all supported inputs.
 
-Name | Description | Default | Allowed values
----|---|---|---
-`GH_PAGES_COMMIT_PRE_COMMANDS` | Commands to be executed before committing to the `gh-pages` branch. | No default | Any valid command (to be executed by `eval` in a sub-shell)
-`GH_PAGES_COMMIT_POST_COMMANDS` | Commands to be executed after committing to the `gh-pages` branch. | No default | Any valid command (to be executed by `eval` in a sub-shell)
-`JEKYLL_BUILD_PRE_COMMANDS` | Commands to be executed before the building of the site. (This can be used to ) | No default | Any valid command (to be executed by `eval` in a sub-shell)
-`JEKYLL_BUILD_POST_COMMANDS` | Commands to be executed after the building of the site. | No default | Any valid command (to be executed by `eval` in a sub-shell)
-
-## Secrets used
+### Secrets used
 
 This script requires the following secrets:
 
 Name | Description | Allowed values
 ---|---|---
-`GH_PAGES_TOKEN` | Specifies the personal access token to use to request a build request **(required)** | No default | A valid personal access token (create one [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) with the scopes `public_repo` and `repo_deployment` enabled)
+ `GITHUB_TOKEN` | Specifies the GitHub installation token. | A valid GitHub installation token. _(Note: GitHub already creates one for you by default - you just need to manually specify this token in your workflow file.)_
+ `GH_PAGES_TOKEN` | Specifies the personal access token to use to request a build request **(required)** | No default     | A valid personal access token (create one [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) with the scopes `public_repo` and `repo_deployment` enabled) |
 
-## Arguments
+### Examples
 
-This script does not take in any arguments.
+#### Basic
 
-## Examples
+```yml
+steps:
+  - uses: actions/checkout@master
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.0.0
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      gh-pages-token: ${{ secrets.GH_PAGES_TOKEN }}
+```
 
-Add the following code to define an action:
+#### Environment variables (`v1`)
 
-```hcl
-workflow "Deploy Site" {
-  on = "push"
-  resolves = ["Build and Deploy Jekyll"]
-}
+v2 of this GitHub Action also supports the former environment variables in v1 of the action:
 
-action "Build and Deploy Jekyll" {
-  uses = "Chan4077/actions/githubPages@master"
-  secrets = ["GH_PAGES_TOKEN"]
-}
+```yml
+steps:
+  - uses: actions/checkout@master
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.0.0
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+      OVERRIDE_GH_PAGES_BRANCH: ${{ true }}
+      # ...
+```
+
+#### All inputs (with defaults)
+
+> Note: Not all of the inputs below have default values - consult the [action file](./action.yml) for more info.
+
+```yml
+steps:
+  - uses: actions/checkout@master
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.0.0
+    with:
+      github-token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
+      gh-pages-token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself)
+      gh-pages-branch: 'gh-pages' # The GitHub Pages branch to deploy the site to
+      gh-pages-dist-folder: '_site' # The folder to build the site to
+      gh-pages-commit-message: 'Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW' # The commit message to use when deploying the site
+      remote-repo: 'https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git' # The repository to deploy the site to
+      committer-username: '$GITHUB_ACTOR' # The username to use for the committer of the commit
+      committer-email: '${GITHUB_ACTOR}@users.noreply.github.com' # The email to use for the committer of the commit
+      git-force: ${{ true }} # Whether to use the --force flag when pushing the commit
+      override-gh-pages-branch: ${{ false }} # Whether to override the gh-pages branch on push
+      gh-pages-add-no-jekyll: ${{ true }} # Whether to add the .nojekyll file to the deployed site
 ```
