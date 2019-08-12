@@ -34,6 +34,8 @@ GH_PAGES_COMMIT_MESSAGE=${INPUT_GH_PAGES_COMMIT_MESSAGE:${GH_PAGES_COMMIT_MESSAG
 if [[ -z "$GH_PAGES_TOKEN" ]]; then
   echo "ERROR: Please use the GH_PAGES_TOKEN to specify the token to use for triggering a build request."
   exit 1
+else
+  GH_PAGES_TOKEN=${INPUT_GH_PAGES_TOKEN:-$GH_PAGES_TOKEN}
 fi
 # Specifies the Git remote repository
 # REMOTE_REPO=${REMOTE_REPO:-"https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}
