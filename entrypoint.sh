@@ -37,6 +37,7 @@ if [[ -z "$GH_PAGES_TOKEN" ]]; then
 else
   GH_PAGES_TOKEN=${INPUT_GH_PAGES_TOKEN:-$GH_PAGES_TOKEN}
 fi
+GITHUB_TOKEN=${INPUT_GITHUB_TOKEN:-$GITHUB_TOKEN}
 # Specifies the Git remote repository
 # REMOTE_REPO=${REMOTE_REPO:-"https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}
 REMOTE_REPO=${INPUT_REMOTE_REPO:${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}}

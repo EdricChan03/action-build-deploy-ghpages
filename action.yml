@@ -2,6 +2,9 @@ name: 'Build and deploy to GitHub Pages'
 description: 'Builds and deploys a Jekyll site to GitHub Pages'
 author: 'Edric Chan'
 inputs:
+  github-token:
+    description: 'The GitHub installation token.'
+    required: true
   gh-pages-token:
     description: 'The token used for triggering a deploy request.'
     required: true
