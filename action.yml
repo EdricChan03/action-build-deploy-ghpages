@@ -24,13 +24,13 @@ inputs:
     description: 'The email to use for the committer of the commit.'
   git-force:
     description: 'Whether to use the --force flag on git push.'
-    default: ${{ true }}
+    default: 'true'
   override-gh-pages-branch:
     description: 'Whether to override the gh-pages branch.'
-    default: ${{ false }}
+    default: 'false'
   gh-pages-add-no-jekyll:
     description: 'Whether to add the .nojekyll file to the deployed site.'
-    default: ${{ true }}
+    default: 'true'
 runs:
   using: 'docker'
   image: 'Dockerfile'
