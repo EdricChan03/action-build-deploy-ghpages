@@ -26,10 +26,10 @@ Name | Description | Allowed values
 ```yml
 steps:
   - uses: actions/checkout@master
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.0.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.1.0
     with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      gh-pages-token: ${{ secrets.GH_PAGES_TOKEN }}
+      github_token: ${{ secrets.GITHUB_TOKEN }}
+      gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }}
 ```
 
 #### Environment variables (`v1`)
@@ -56,15 +56,15 @@ steps:
   - uses: actions/checkout@master
   - uses: EdricChan03/action-build-deploy-ghpages@v2.0.0
     with:
-      github-token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
-      gh-pages-token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself)
-      gh-pages-branch: 'gh-pages' # The GitHub Pages branch to deploy the site to
-      gh-pages-dist-folder: '_site' # The folder to build the site to
-      gh-pages-commit-message: 'Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW' # The commit message to use when deploying the site
-      remote-repo: 'https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git' # The repository to deploy the site to
-      committer-username: '$GITHUB_ACTOR' # The username to use for the committer of the commit
-      committer-email: '${GITHUB_ACTOR}@users.noreply.github.com' # The email to use for the committer of the commit
-      git-force: ${{ true }} # Whether to use the --force flag when pushing the commit
-      override-gh-pages-branch: ${{ false }} # Whether to override the gh-pages branch on push
-      gh-pages-add-no-jekyll: ${{ true }} # Whether to add the .nojekyll file to the deployed site
+      github_token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
+      gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself)
+      gh_pages_branch: 'gh-pages' # The GitHub Pages branch to deploy the site to
+      gh_pages_dist_folder: '_site' # The folder to build the site to
+      gh_pages_commit_message: 'Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW' # The commit message to use when deploying the site
+      remote_repo: 'https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git' # The repository to deploy the site to
+      committer_username: '$GITHUB_ACTOR' # The username to use for the committer of the commit
+      committer_email: '${GITHUB_ACTOR}@users.noreply.github.com' # The email to use for the committer of the commit
+      git_force: ${{ true }} # Whether to use the --force flag when pushing the commit
+      override_gh_pages_branch: ${{ false }} # Whether to override the gh-pages branch on push
+      gh_pages_add_no_jekyll: ${{ true }} # Whether to add the .nojekyll file to the deployed site
 ```

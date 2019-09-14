@@ -2,33 +2,33 @@ name: 'Build and deploy to GitHub Pages'
 description: 'Builds and deploys a Jekyll site to GitHub Pages'
 author: 'Edric Chan'
 inputs:
-  github-token:
+  github_token:
     description: 'The GitHub installation token.'
     required: true
-  gh-pages-token:
+  gh_pages_token:
     description: 'The token used for triggering a deploy request.'
     required: true
-  gh-pages-branch:
+  gh_pages_branch:
     description: 'The branch to deploy the Jekyll site to.'
     default: 'gh-pages'
-  gh-pages-dist-folder:
+  gh_pages_dist_folder:
     description: 'The folder to build the Jekyll site to.'
     default: '_site'
-  gh-pages-commit-message:
+  gh_pages_commit_message:
     description: 'The commit message to use when deploying the Jekyll site.'
-  remote-repo:
+  remote_repo:
     description: 'The repository to deploy the Jekyll site to.'
-  committer-username:
+  committer_username:
     description: 'The username to use for the committer of the commit.'
-  committer-email:
+  committer_email:
     description: 'The email to use for the committer of the commit.'
-  git-force:
+  git_force:
     description: 'Whether to use the --force flag on git push.'
     default: 'true'
-  override-gh-pages-branch:
+  override_gh_pages_branch:
     description: 'Whether to override the gh-pages branch.'
     default: 'false'
-  gh-pages-add-no-jekyll:
+  gh_pages_add_no_jekyll:
     description: 'Whether to add the .nojekyll file to the deployed site.'
     default: 'true'
 runs:
