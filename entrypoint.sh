@@ -87,7 +87,7 @@ fi
 
 if [[ -n "$JEKYLL_BUILD_PRE_COMMANDS" ]]; then
   echo "Running pre commands..."
-  bash -c "$JEKYLL_BUILD_PRE_COMMANDS"
+  eval "$JEKYLL_BUILD_PRE_COMMANDS"
 fi
 bundle exec jekyll build
 echo "Successfully built the site!"
@@ -105,12 +105,12 @@ if [[ "$GH_PAGES_ADD_NO_JEKYLL" = true || ($GH_PAGES_ADD_NO_JEKYLL == 1) ]]; the
 fi
 if [[ -n "$JEKYLL_BUILD_POST_COMMANDS" ]]; then
   echo "Running post commands..."
-  bash -c "$JEKYLL_BUILD_POST_COMMANDS"
+  eval "$JEKYLL_BUILD_POST_COMMANDS"
 fi
 
 if [[ -n "$GH_PAGES_COMMIT_PRE_COMMANDS" ]]; then
   echo "Running pre commands..."
-  bash -c "$GH_PAGES_COMMIT_PRE_COMMANDS"
+  eval "$GH_PAGES_COMMIT_PRE_COMMANDS"
 fi
 echo "Setting Git username and email..."
 git config user.name "$COMMITTER_USERNAME"
@@ -131,7 +131,7 @@ fi
 
 if [[ -n "$GH_PAGES_COMMIT_POST_COMMANDS" ]]; then
   echo "Running post commands..."
-  bash -c "$GH_PAGES_COMMIT_POST_COMMANDS"
+  eval "$GH_PAGES_COMMIT_POST_COMMANDS"
 fi
 
 echo "Requesting build request for deployed build..."
