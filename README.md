@@ -26,7 +26,7 @@ Name | Description | Allowed values
 ```yml
 steps:
   - uses: actions/checkout@master
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.1.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.2.0
     with:
       github_token: ${{ secrets.GITHUB_TOKEN }}
       gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }}
@@ -39,7 +39,7 @@ v2 of this GitHub Action also supports the former environment variables in v1 of
 ```yml
 steps:
   - uses: actions/checkout@master
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.1.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.2.0
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
@@ -54,7 +54,7 @@ steps:
 ```yml
 steps:
   - uses: actions/checkout@master
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.1.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.2.0
     with:
       github_token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
       gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself)
