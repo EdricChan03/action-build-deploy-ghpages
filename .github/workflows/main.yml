@@ -1,6 +1,10 @@
 name: Main Workflow
 
-on: push
+on:
+  push:
+    branches:
+    # Only allow the workflow to be run on version 2 of the Action.
+    - v2
 
 jobs:
   lint-script:
