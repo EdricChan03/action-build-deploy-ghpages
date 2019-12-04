@@ -3,11 +3,13 @@ name: Main Workflow
 on: push
 
 jobs:
-  shellcheck:
+  lint-script:
     name: Lint Action script
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run shellcheck command
-      uses: ludeeus/action-shellcheck@0.1.0
+    - name: Lint Action script
+      uses: azohra/shell-linter@v0.1.0
+      # It's okay to continue even if the action errors out, for now
+      continue-on-error: true
