@@ -1,0 +1,13 @@
+name: Main Workflow
+
+on: push
+
+jobs:
+  shellcheck:
+    name: Lint Action script
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run shellcheck command
+      uses: ludeeus/action-shellcheck@0.1.0
