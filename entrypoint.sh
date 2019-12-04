@@ -122,11 +122,11 @@ git add -A
 
 git commit -m "$(echo -e "$GH_PAGES_COMMIT_MESSAGE")"
 if [[ "$GIT_FORCE" = true || ($GIT_FORCE == 1) ]]; then
-  git push --force origin $GH_PAGES_BRANCH
+  git push --force origin "$GH_PAGES_BRANCH"
 else
   echo "WARNING: Not force-pushing to the branch!"
   echo "This may yield unexpected results!"
-  git push origin $GH_PAGES_BRANCH
+  git push origin "$GH_PAGES_BRANCH"
 fi
 
 if [[ -n "$GH_PAGES_COMMIT_POST_COMMANDS" ]]; then
@@ -136,7 +136,7 @@ fi
 
 echo "Requesting build request for deployed build..."
 
-curl -X POST -u $GITHUB_ACTOR:$GH_PAGES_TOKEN -H "Accept: application/vnd.github.mister-fantastic-preview+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds"
+curl -X POST -u "$GITHUB_ACTOR":"$GH_PAGES_TOKEN" -H "Accept: application/vnd.github.mister-fantastic-preview+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds"
 
 echo "Successfully requested build request!"
 
