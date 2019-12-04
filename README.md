@@ -43,7 +43,7 @@ steps:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
-      OVERRIDE_GH_PAGES_BRANCH: ${{ true }}
+      OVERRIDE_GH_PAGES_BRANCH: 'true'
       # ...
 ```
 
@@ -64,7 +64,7 @@ steps:
       remote_repo: 'https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git' # The repository to deploy the site to
       committer_username: '$GITHUB_ACTOR' # The username to use for the committer of the commit
       committer_email: '${GITHUB_ACTOR}@users.noreply.github.com' # The email to use for the committer of the commit
-      git_force: ${{ true }} # Whether to use the --force flag when pushing the commit
-      override_gh_pages_branch: ${{ false }} # Whether to override the gh-pages branch on push
-      gh_pages_add_no_jekyll: ${{ true }} # Whether to add the .nojekyll file to the deployed site
+      git_force: 'true' # Whether to use the --force flag when pushing the commit
+      override_gh_pages_branch: 'false' # Whether to override the gh-pages branch on push
+      gh_pages_add_no_jekyll: 'true' # Whether to add the .nojekyll file to the deployed site
 ```
