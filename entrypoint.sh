@@ -30,31 +30,31 @@ if [[ -n "$GH_PAGES_MESSAGE" ]]; then
   GH_PAGES_COMMIT_MESSAGE="$GH_PAGES_MESSAGE"
 fi
 # Specifies the commit message
-GH_PAGES_COMMIT_MESSAGE=${INPUT_GH_PAGES_COMMIT_MESSAGE:${GH_PAGES_COMMIT_MESSAGE:-"Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW"}}
+GH_PAGES_COMMIT_MESSAGE=${INPUT_GH_PAGES_COMMIT_MESSAGE:-${GH_PAGES_COMMIT_MESSAGE:-"Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW"}}
 # GitHub Pages token for deploying
 GH_PAGES_TOKEN=${INPUT_GH_PAGES_TOKEN:-$GH_PAGES_TOKEN}
 # GitHub token
 GITHUB_TOKEN=${INPUT_GITHUB_TOKEN:-$GITHUB_TOKEN}
 # Specifies the Git remote repository
 # REMOTE_REPO=${REMOTE_REPO:-"https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}
-REMOTE_REPO=${INPUT_REMOTE_REPO:${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}}
+REMOTE_REPO=${INPUT_REMOTE_REPO:-${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}}
 # Specifies the committer's username
 # Default: $GITHUB_ACTOR
-COMMITTER_USERNAME=${INPUT_COMMITTER_USERNAME:${COMMITTER_USERNAME:-$GITHUB_ACTOR}}
+COMMITTER_USERNAME=${INPUT_COMMITTER_USERNAME:-${COMMITTER_USERNAME:-$GITHUB_ACTOR}}
 # Specifies the committer's email
 # Default: `${GITHUB_ACTOR}@users.noreply.github.com`
-COMMITTER_EMAIL=${INPUT_COMMITTER_EMAIL:${COMMITTER_EMAIL:-"${GITHUB_ACTOR}@users.noreply.github.com"}}
+COMMITTER_EMAIL=${INPUT_COMMITTER_EMAIL:-${COMMITTER_EMAIL:-"${GITHUB_ACTOR}@users.noreply.github.com"}}
 
 # Whether to force pushing
 # Default: `true`
-GIT_FORCE=${INPUT_GIT_FORCE:${GIT_FORCE:-true}}
+GIT_FORCE=${INPUT_GIT_FORCE:-${GIT_FORCE:-true}}
 
 # Whether to override the contents of the branch with the current build
-OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:${OVERRIDE_GH_PAGES_BRANCH:-false}}
+OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_BRANCH:-false}}
 
 # Whether to add the `.nojekyll` file to indicate that the branch should not be built
 # Default: `true`
-GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:${GH_PAGES_ADD_NO_JEKYLL:-true}}
+GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:-${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
 echo "Installing gem bundle..."
 # Prevent installed dependencies messages from clogging the log
