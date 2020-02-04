@@ -61,6 +61,7 @@ steps:
       gh_pages_branch: 'gh-pages' # The GitHub Pages branch to deploy the site to
       gh_pages_dist_folder: '_site' # The folder to build the site to
       gh_pages_commit_message: 'Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW' # The commit message to use when deploying the site
+      jekyll_build_opts: '' # Options to pass to the Jekyll build command.
       remote_repo: 'https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git' # The repository to deploy the site to
       committer_username: '$GITHUB_ACTOR' # The username to use for the committer of the commit
       committer_email: '${GITHUB_ACTOR}@users.noreply.github.com' # The email to use for the committer of the commit

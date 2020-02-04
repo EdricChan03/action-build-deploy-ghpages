@@ -18,6 +18,8 @@ inputs:
     description: 'The commit message to use when deploying the Jekyll site.'
   remote_repo:
     description: 'The repository to deploy the Jekyll site to.'
+  jekyll_build_opts:
+    description: 'Options to pass to the Jekyll build command.'
   committer_username:
     description: 'The username to use for the committer of the commit.'
   committer_email:

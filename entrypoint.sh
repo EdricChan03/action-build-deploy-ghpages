@@ -27,6 +27,7 @@ GITHUB_TOKEN=${INPUT_GITHUB_TOKEN:-$GITHUB_TOKEN}
 
 # Specifies the Git remote repository
 REMOTE_REPO=${INPUT_REMOTE_REPO:-${REMOTE_REPO:-"https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"}}
+
 # Specifies the committer's username
 # Default: $GITHUB_ACTOR
 COMMITTER_USERNAME=${INPUT_COMMITTER_USERNAME:-${COMMITTER_USERNAME:-$GITHUB_ACTOR}}
@@ -41,6 +42,9 @@ GIT_FORCE=${INPUT_GIT_FORCE:-${GIT_FORCE:-true}}
 
 # Whether to override the contents of the branch with the current build
 OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_BRANCH:-false}}
+
+# Specifies the Jekyll build command
+JEKYLL_BUILD_OPTS="${INPUT_JEKYLL_BUILD_OPTS:-${JEKYLL_BUILD_OPTS}}"
 
 # Whether to add the `.nojekyll` file to indicate that the branch should not be built
 # Default: `true`
@@ -80,7 +84,7 @@ if [[ -n "$JEKYLL_BUILD_PRE_COMMANDS" ]]; then
   echo "Running pre-build commands..."
   eval "$JEKYLL_BUILD_PRE_COMMANDS"
 fi
-bundle exec jekyll build
+bundle exec jekyll build "$JEKYLL_BUILD_OPTS"
 echo "Successfully built the site!"
 
 if [[ -d "$GH_PAGES_DIST_FOLDER" ]]; then
