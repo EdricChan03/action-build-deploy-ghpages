@@ -56,14 +56,10 @@ OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_B
 # Default: `true`
 GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:-${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
-echo "Installing gem bundle..."
-# Prevent installed dependencies messages from clogging the log
-bundle install > /dev/null 2>&1
+bundle install
 
 # Check if jekyll is installed
 bundle list | grep "jekyll ("
-
-echo "Successfully installed gem bundles!"
 
 echo "Pushing to GitHub Pages..."
 
