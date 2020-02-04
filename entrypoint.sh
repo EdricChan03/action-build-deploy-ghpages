@@ -56,6 +56,12 @@ OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_B
 # Default: `true`
 GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:-${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
+# Whether to show the full bundle install log
+SHOW_BUNDLE_LOG=${INPUT_SHOW_BUNDLE_LOG:-${SHOW_BUNDLE_LOG:-false}}
+
+# Whether to skip deployment
+SKIP_DEPLOY=${INPUT_SKIP_DEPLOY:-${SKIP_DEPLOY:-false}}
+
 echo "Installing gem bundle..."
 if [[ "$SHOW_BUNDLE_LOG" == true || ($SHOW_BUNDLE_LOG == 1) ]]; then
   bundle install
