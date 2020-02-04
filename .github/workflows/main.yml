@@ -5,6 +5,10 @@ on:
     branches:
     # Only allow the workflow to be run on version 2 of the Action.
     - v2
+  pull_request:
+    branches:
+    # Only allow the workflow to be run on version 2 of the Action source code.
+    - v2
 
 jobs:
   lint-script:
