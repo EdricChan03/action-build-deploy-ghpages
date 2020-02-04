@@ -57,8 +57,12 @@ OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_B
 GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:-${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
 echo "Installing gem bundle..."
-# Prevent installed dependencies messages from clogging the log
-bundle install #> /dev/null 2>&1
+if [[ "$SHOW_BUNDLE_LOG" == true || ($SHOW_BUNDLE_LOG == 1) ]]; then
+  bundle install
+else
+  # Prevent installed dependencies messages from clogging the log
+  bundle install > /dev/null 2>&1
+fi
 
 # Check if jekyll is installed
 bundle list | grep "jekyll ("
@@ -106,6 +110,12 @@ fi
 if [[ -n "$JEKYLL_BUILD_POST_COMMANDS" ]]; then
   echo "Running post commands..."
   eval "$JEKYLL_BUILD_POST_COMMANDS"
+fi
+
+if [[ "$SKIP_DEPLOY" == true || ($SKIP_DEPLOY == 1) ]]; then
+  # The .nojekyll file should have a blank line in the file's contents
+  echo "Finished build, skipping deployment..."
+  exit 0
 fi
 
 if [[ -n "$GH_PAGES_COMMIT_PRE_COMMANDS" ]]; then

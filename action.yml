@@ -31,6 +31,12 @@ inputs:
   gh_pages_add_no_jekyll:
     description: 'Whether to add the .nojekyll file to the deployed site.'
     default: 'true'
+  skip_deploy:
+    description: 'Whether to skip deploy and only attempt build'
+    default: 'false'
+  show_bundle_log:
+    description: 'Whether to show the full output of bundle install'
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'
