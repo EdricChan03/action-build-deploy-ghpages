@@ -56,6 +56,10 @@ OVERRIDE_GH_PAGES_BRANCH=${INPUT_OVERRIDE_GH_PAGES_BRANCH:-${OVERRIDE_GH_PAGES_B
 # Default: `true`
 GH_PAGES_ADD_NO_JEKYLL=${INPUT_GH_PAGES_ADD_NO_JEKYLL:-${GH_PAGES_ADD_NO_JEKYLL:-true}}
 
+# Whether to skip deployment
+# Default: `false`
+SKIP_DEPLOY=${INPUT_SKIP_DEPLOY:-${SKIP_DEPLOY:-false}}
+
 echo "Installing gem bundle..."
 # Prevent installed dependencies messages from clogging the log
 bundle install > /dev/null 2>&1
@@ -106,6 +110,11 @@ fi
 if [[ -n "$JEKYLL_BUILD_POST_COMMANDS" ]]; then
   echo "Running post commands..."
   eval "$JEKYLL_BUILD_POST_COMMANDS"
+fi
+
+if [[ "$SKIP_DEPLOY" = true || ($SKIP_DEPLOY == 1) ]]; then
+  echo "Finished build, skipping deployment..."
+  exit 0
 fi
 
 if [[ -n "$GH_PAGES_COMMIT_PRE_COMMANDS" ]]; then
