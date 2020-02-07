@@ -36,6 +36,9 @@ inputs:
   skip_deploy:
     description: 'Whether to skip deployment after a successful build.'
     default: 'false'
+  show_bundle_log:
+    description: 'Whether to show detailed logs from the bundle install command.'
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'

@@ -69,4 +69,5 @@ steps:
       override_gh_pages_branch: 'false' # Whether to override the gh-pages branch on push
       gh_pages_add_no_jekyll: 'true' # Whether to add the .nojekyll file to the deployed site
       skip_deploy: 'false' # Whether to skip deployment after a successful build.
+      show_bundle_log: 'false' # Whether to show detailed logs from bundle install command. Useful for debugging broken builds.
 ```
