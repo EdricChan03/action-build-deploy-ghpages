@@ -4,8 +4,6 @@ A GitHub Action that builds and deploys a Jekyll site to GitHub Pages.
 
 This GitHub Action requires a GitHub personal access token to deploy commits. To create one, click [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) and specify the `GH_PAGES_TOKEN` environment variable in your GitHub repository's Secrets.
 
-> Note: This branch (`v2`) contains work for the latest and most recent version of GitHub Actions, which was recently revamped to use YAML syntax. See the [announcement post](https://github.blog/2019-08-08-github-actions-now-supports-ci-cd/) for more info.
-
 ## Usage
 
 See [`action.yml`](./action.yml) for a list of all supported inputs.
