@@ -20,6 +20,9 @@ fi
 GH_PAGES_COMMIT_MESSAGE=${INPUT_GH_PAGES_COMMIT_MESSAGE:-${GH_PAGES_COMMIT_MESSAGE:-"Deploy commit $GITHUB_SHA\n\nAutodeployed using $GITHUB_ACTION in $GITHUB_WORKFLOW"}}
 
 # GitHub Pages token for deploying
+# Note: This is no longer needed - see
+# https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551
+# for more info.
 GH_PAGES_TOKEN=${INPUT_GH_PAGES_TOKEN:-$GH_PAGES_TOKEN}
 
 # GitHub token
@@ -143,11 +146,15 @@ if [[ -n "$GH_PAGES_COMMIT_POST_COMMANDS" ]]; then
   eval "$GH_PAGES_COMMIT_POST_COMMANDS"
 fi
 
-echo "Requesting build request for deployed build..."
+if [[ -n "$GH_PAGES_TOKEN" ]]; then
+  echo "Requesting build request for deployed build..."
 
-curl -X POST -u "$GITHUB_ACTOR":"$GH_PAGES_TOKEN" -H "Accept: application/vnd.github.mister-fantastic-preview+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds"
+  curl -X POST -u "$GITHUB_ACTOR":"$GH_PAGES_TOKEN" -H "Accept: application/vnd.github.mister-fantastic-preview+json" "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds"
 
-echo "Successfully requested build request!"
+  echo "Successfully requested build request!"
+else
+  echo "Skipping build request for deployed build as GH_PAGES_TOKEN was not specified."
+fi
 
 cd ..
 

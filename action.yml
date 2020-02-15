@@ -6,8 +6,8 @@ inputs:
     description: 'The GitHub installation token.'
     required: true
   gh_pages_token:
-    description: 'The token used for triggering a deploy request.'
-    required: true
+    description: 'The token used for triggering a deploy request. (This is no longer needed - see https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551)'
+    required: false
   gh_pages_branch:
     description: 'The branch to deploy the Jekyll site to.'
     default: 'gh-pages'
