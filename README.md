@@ -24,7 +24,7 @@ Name | Description | Allowed values
 ```yml
 steps:
   - uses: actions/checkout@v2
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.3.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.4.0
     with:
       github_token: ${{ secrets.GITHUB_TOKEN }}
       # gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }} No longer needed - see https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551 for more info
@@ -48,7 +48,7 @@ v2 of this GitHub Action also supports the former environment variables in v1 of
 ```yml
 steps:
   - uses: actions/checkout@v2
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.3.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.4.0
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
@@ -63,7 +63,7 @@ steps:
 ```yml
 steps:
   - uses: actions/checkout@v2
-  - uses: EdricChan03/action-build-deploy-ghpages@v2.3.0
+  - uses: EdricChan03/action-build-deploy-ghpages@v2.4.0
     with:
       github_token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
       # gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself) (As of 15 Feb 2020, this is no longer needed - see https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551)
