@@ -11,34 +11,46 @@ inputs:
   gh_pages_branch:
     description: 'The branch to deploy the Jekyll site to.'
     default: 'gh-pages'
+    required: false
   gh_pages_dist_folder:
     description: 'The folder to build the Jekyll site to.'
     default: '_site'
+    required: false
   gh_pages_commit_message:
     description: 'The commit message to use when deploying the Jekyll site.'
+    required: false
   remote_repo:
     description: 'The repository to deploy the Jekyll site to.'
+    required: false
   jekyll_build_opts:
     description: 'Options to pass to the Jekyll build command.'
+    required: false
   committer_username:
     description: 'The username to use for the committer of the commit.'
+    required: false
   committer_email:
     description: 'The email to use for the committer of the commit.'
+    required: false
   git_force:
     description: 'Whether to use the --force flag on git push.'
     default: 'true'
+    required: false
   override_gh_pages_branch:
     description: 'Whether to override the gh-pages branch.'
     default: 'false'
+    required: false
   gh_pages_add_no_jekyll:
     description: 'Whether to add the .nojekyll file to the deployed site.'
     default: 'true'
+    required: false
   skip_deploy:
     description: 'Whether to skip deployment after a successful build.'
     default: 'false'
+    required: false
   show_bundle_log:
     description: 'Whether to show detailed logs from the bundle install command.'
     default: 'false'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
