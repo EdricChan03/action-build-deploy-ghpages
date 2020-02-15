@@ -62,7 +62,10 @@ if [[ "$SHOW_BUNDLE_LOG" = true || ($SHOW_BUNDLE_LOG == 1) ]]; then
   bundle install
 else
   # Prevent installed dependencies messages from clogging the log
-  bundle install > /dev/null 2>&1
+  if [[ 0 -ne $(bundle install > /tmp/bundle-install.log 2>&1; echo $?) ]]; then
+    echo "Failed to install gem bundles:"
+    cat /tmp/bundle-install.log
+  fi
 fi
 
 # Check if jekyll is installed
