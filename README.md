@@ -14,7 +14,7 @@ This script needs the following secrets:
 
 Name | Description | Allowed values
 ---|---|---
- `GITHUB_TOKEN` | Specifies the GitHub installation token. | A valid GitHub installation token. _(Note: GitHub already creates one for you by default - you just need to manually specify this token in your workflow file.)_
+ `GITHUB_TOKEN` | Specifies the GitHub installation token. | A valid GitHub installation token. _(Note: GitHub already creates one for you by default - you just need to manually specify this token with `${{ secrets.GITHUB_TOKEN }}` or `${{ github.token }}` in your workflow file.)_
  `GH_PAGES_TOKEN` | Specifies the personal access token to use to request a build request **(~~required~~ optional - no longer required as of 15 Feb 2020 - see this [GitHub Community post](https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551) and [#13](https://github.com/EdricChan03/action-build-deploy-ghpages/issues/13) for more info)** | A valid personal access token (create one [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) with the scopes `public_repo` and `repo_deployment` enabled)
 
 ### Examples
@@ -37,7 +37,7 @@ steps:
   - uses: actions/checkout@v2
   - uses: EdricChan03/action-build-deploy-ghpages@v2
     with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
+      github_token: ${{ secrets.GITHUB_TOKEN }} # Or ${{ github.token }}
       # gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }}
 ```
 
@@ -50,7 +50,7 @@ steps:
   - uses: actions/checkout@v2
   - uses: EdricChan03/action-build-deploy-ghpages@v2.4.0
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Or ${{ github.token }}
       # GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
       OVERRIDE_GH_PAGES_BRANCH: 'true'
       # ...
@@ -65,7 +65,7 @@ steps:
   - uses: actions/checkout@v2
   - uses: EdricChan03/action-build-deploy-ghpages@v2.4.0
     with:
-      github_token: ${{ secrets.GITHUB_TOKEN }} # Note: You don't have to create this secret - GitHub already does that for you (This input does not have a default value - you have to supply this yourself)
+      github_token: ${{ secrets.GITHUB_TOKEN }} # The GitHub installation token. Note: You can also use ${{ github.token }}
       # gh_pages_token: ${{ secrets.GH_PAGES_TOKEN }} # Note: You have to create this yourself - see the "Secrets used" section above for more info (This input does not have a default value - you have to supply this yourself) (As of 15 Feb 2020, this is no longer needed - see https://github.community/t5/GitHub-Actions/Github-action-not-triggering-gh-pages-upon-push/m-p/46519/highlight/true#M6551)
       gh_pages_branch: 'gh-pages' # The GitHub Pages branch to deploy the site to
       gh_pages_dist_folder: '_site' # The folder to build the site to
