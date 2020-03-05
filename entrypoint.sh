@@ -60,6 +60,17 @@ SKIP_DEPLOY=${INPUT_SKIP_DEPLOY:-${SKIP_DEPLOY:-false}}
 # Whether to show the full bundle install log
 SHOW_BUNDLE_LOG=${INPUT_SHOW_BUNDLE_LOG:-${SHOW_BUNDLE_LOG:-false}}
 
+# The specific version of Bundler to install.
+BUNDLER_VERSION=${INPUT_BUNDLER_VERSION:-${BUNDLER_VERSION}}
+
+echo "Updating gems..."
+gem update --system
+
+if [[ -n "$BUNDLER_VERSION" ]]; then
+  echo "Installing specific Bundler version $BUNDLER_VERSION..."
+  gem install bundler -v "$BUNDLER_VERSION"
+fi
+
 echo "Installing gem bundle..."
 if [[ "$SHOW_BUNDLE_LOG" = true || ($SHOW_BUNDLE_LOG == 1) ]]; then
   bundle install

@@ -79,4 +79,5 @@ steps:
       gh_pages_add_no_jekyll: 'true' # Whether to add the .nojekyll file to the deployed site
       skip_deploy: 'false' # Whether to skip deployment after a successful build.
       show_bundle_log: 'false' # Whether to show detailed logs from bundle install command. Useful for debugging broken builds.
+      bundler_version: '' # A specific version of Bundler to be used.
 ```

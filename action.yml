@@ -51,6 +51,9 @@ inputs:
     description: 'Whether to show detailed logs from the bundle install command.'
     default: 'false'
     required: false
+  bundler_version:
+    description: 'A specific version of Bundler to be used.'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
