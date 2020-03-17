@@ -6,7 +6,7 @@ A GitHub Action that builds and deploys a Jekyll site to GitHub Pages.
 
 ~~This GitHub Action requires a GitHub personal access token to deploy commits. To create one, click [here](https://github.com/settings/tokens/new?scopes=public_repo,repo_deployment&description=Token%20for%20Deploy%20GitHub%20Pages%20GitHub%20Action) and specify the `GH_PAGES_TOKEN` environment variable in your GitHub repository's Secrets.~~ (Note: You no longer have to create a PAT: see the [Secrets used](#secrets-used) section for more info.)
 
-This GitHub Action is licensed by the MIT license. View the [repository's `LICENSE` file for more information](https://github.com/EdricChan03/action-build-deploy-ghpages/blob/master/LICENSE).
+This GitHub Action is licensed under the MIT license. View the [repository's `LICENSE` file for more information](https://github.com/EdricChan03/action-build-deploy-ghpages/blob/master/LICENSE).
 
 ## FAQ
 
@@ -22,7 +22,7 @@ As for the "external plugins" portion, here's a quote from the same documentatio
 
 > Note that GitHub Pages runs in `safe` mode and only allows a set of [whitelisted plugins](https://help.github.com/articles/configuring-jekyll-plugins/#default-plugins).
 
-So, if you're using plugins that are not in the list of whitelisted plugins, you may use this GitHub Action to build your Jekyll site.
+Otherwise, if you're using plugins that are not in the list of whitelisted plugins, you may use this GitHub Action to build your Jekyll site.
 
 ### How can I help?
 
