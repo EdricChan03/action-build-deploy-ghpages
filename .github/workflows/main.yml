@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Lint Action script
       uses: azohra/shell-linter@v0.4.0
       # It's okay to continue even if the action errors out, for now
