@@ -1,0 +1,35 @@
+version: 2
+
+updates:
+  # Maintain deps for the main GitHub Actions workflow
+  # This is applicable for workflows in `.github/workflows`
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    # Check for updates daily at 12 midnight UTC
+    schedule:
+      interval: "daily"
+      time: "00:00"
+    commit-message:
+      prefix: "workflow"
+    labels:
+      - "workflow-dependencies"
+    assignees:
+      - "EdricChan03"
+    reviewers:
+      - "EdricChan03"
+
+  # Maintain Docker deps
+  - package-ecosystem: "docker"
+    directory: "/"
+    # Check for updates daily at 12 midnight UTC
+    schedule:
+      interval: "daily"
+      time: "00:00"
+    commit-message:
+      prefix: "action"
+    labels:
+      - "action-dependencies"
+    assignees:
+      - "EdricChan03"
+    reviewers:
+      - "EdricChan03"
