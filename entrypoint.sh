@@ -63,6 +63,9 @@ SHOW_BUNDLE_LOG=${INPUT_SHOW_BUNDLE_LOG:-${SHOW_BUNDLE_LOG:-false}}
 # The specific version of Bundler to install.
 BUNDLER_VERSION=${INPUT_BUNDLER_VERSION:-${BUNDLER_VERSION}}
 
+# The environment to use for the build
+JEKYLL_ENV=${INPUT_JEKYLL_ENV:-${JEKYLL_ENV}}
+
 echo "Updating gems..."
 gem update --system
 
