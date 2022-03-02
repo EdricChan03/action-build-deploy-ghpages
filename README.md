@@ -122,4 +122,5 @@ steps:
       skip_deploy: 'false' # Whether to skip deployment after a successful build.
       show_bundle_log: 'false' # Whether to show detailed logs from bundle install command. Useful for debugging broken builds.
       bundler_version: '' # A specific version of Bundler to be used.
+      jekyll_env: 'production' # The Jekyll environment to use when building the site. (See https://jekyllrb.com/docs/configuration/environments/)
 ```

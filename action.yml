@@ -54,6 +54,10 @@ inputs:
   bundler_version:
     description: 'A specific version of Bundler to be used.'
     required: false
+  jekyll_env:
+    description: 'The Jekyll environment to use when building the site. (See https://jekyllrb.com/docs/configuration/environments/)'
+    default: 'production'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
