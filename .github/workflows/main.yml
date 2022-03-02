@@ -4,11 +4,11 @@ on:
   push:
     branches:
     # Only allow the workflow to be run on version 2 of the Action.
-    - master
+    - main
   pull_request:
     branches:
     # Only allow the workflow to be run on version 2 of the Action source code.
-    - master
+    - main
 
 jobs:
   lint-script:
