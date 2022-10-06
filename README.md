@@ -8,6 +8,14 @@ A GitHub Action that builds and deploys a Jekyll site to GitHub Pages.
 
 This GitHub Action is licensed under the MIT license. View the [repository's `LICENSE` file for more information](https://github.com/EdricChan03/action-build-deploy-ghpages/blob/main/LICENSE).
 
+## Known issues
+
+### Error: Container action is only supported on Linux
+
+This is because this GitHub Action is a Docker container action which appears to currently not be supported on environments
+other than Linux. For more information, see this
+[GitHub Community discussion](https://github.com/orgs/community/discussions/25777#discussioncomment-3249229) and [#29](https://github.com/EdricChan03/action-build-deploy-ghpages/issues/29).
+
 ## FAQ
 
 ### Should you use this Action?
