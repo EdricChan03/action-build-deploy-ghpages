@@ -18,6 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Lint Action script
-      uses: azohra/shell-linter@v0.6.0
+      uses: azohra/shell-linter@v0.8.0
       # It's okay to continue even if the action errors out, for now
       continue-on-error: true
