@@ -1,4 +1,4 @@
-FROM ruby:3.4.7
+FROM ruby:4.0.0
 
 # Set the default locale so as to not cause issues in Jekyll
 ENV LC_ALL C.UTF-8
